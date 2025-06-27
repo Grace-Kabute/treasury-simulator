@@ -1,9 +1,11 @@
 import './App.css';
+import Layout from './layout';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Treasury Simulator</h1>
+    <Layout/>
     </div>
   );
 }
