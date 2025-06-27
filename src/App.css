@@ -1,0 +1,21 @@
+.layout {
+  display: grid;
+  height: 100vh;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: repeat(7, 1fr);
+  grid-template-areas:
+    "one one two two two two two"
+    "one one two two two two two"
+    "one one two two two two two"
+    "one one two two two two two";
+}
+.sideNavigation {
+  grid-area: one;
+  background-color: red;
+}
+
+.mainbox {
+  grid-area: two;
+  background-color: blue;
+}
+
