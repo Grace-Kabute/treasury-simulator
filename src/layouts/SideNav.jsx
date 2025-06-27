@@ -6,7 +6,7 @@ import usd from '../assets/USD.jpg'
 
 const SideNav =() =>{
   return (
-    <nav className="flex flex-col space-y-2 p-4 w-64 border-r">
+    <nav>
     <BalanceCard
     name="Total Treasury Balance"
     icon={usd}
