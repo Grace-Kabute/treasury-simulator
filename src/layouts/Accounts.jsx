@@ -5,12 +5,13 @@ import ActionButton from "../components/ActionButton";
 import { AlignCenter, PlusCircle } from "lucide-react";
 import { handleTransfer } from "../utils/TransferLogic";
 import startingAccounts from "../utils/data";
+import { useTransactions } from "../hooks/UseTransactions";
 import '../styles.css'
 
 
 const Accounts = () => {
   const [accounts, setAccounts] = useState(startingAccounts);
-  const [transactions, setTransactions] = useState([]);
+const [transactions, setTransactions] = useTransactions();
   const [showTransferForm, setShowTransferForm] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 

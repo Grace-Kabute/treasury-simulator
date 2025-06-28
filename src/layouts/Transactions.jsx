@@ -15,8 +15,9 @@ const Transactions = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-2">
-        <h2 className="text-lg font-bold">Recent Transactions</h2>
+      <div>
+        <h2>Recent Transactions</h2>
+        <i>Refresh page to update</i>
         {transactions.length > 5 && (
           <button
             onClick={() => setShowAll((prev) => !prev)}
@@ -33,7 +34,7 @@ const Transactions = () => {
           onDelete={handleDelete}
         />
       ) : (
-        <p className="text-gray-500">No transactions yet.</p>
+        <p>No transactions yet. Please refresh page</p>
       )}
     </div>
   );

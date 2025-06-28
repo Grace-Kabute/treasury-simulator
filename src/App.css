@@ -33,7 +33,7 @@
   grid-area: five;
   height: 10vh;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .layout {
     display: flex;
     flex-direction: column;
