@@ -1,21 +1,32 @@
 .layout {
   display: grid;
   height: 100vh;
-  grid-auto-columns: 1fr;
   grid-auto-rows: repeat(7, 1fr);
   grid-template-areas:
-    "one one two two two two two"
-    "one one two two two two two"
-    "one one two two two two two"
-    "one one two two two two two";
-}
-.sideNavigation {
-  grid-area: one;
-  background-color: red;
+    "one one one one one two two"
+    "one one one one one two two"
+    "three three three three three two two"
+    "three three three three three two two"
+    "four four four four four four four"
+    "four four four four four four four";
 }
 
 .mainbox {
+  grid-area: one;
+  background-color: plum;
+}
+.accounts {
   grid-area: two;
   background-color: blue;
 }
 
+.transactions {
+  grid-area: three;
+  background-color: red;
+  height: 60vh;
+}
+.footer {
+  grid-area: four;
+  background-color: greenyellow;
+  height: 15vh;
+}
