@@ -1,4 +1,6 @@
 import { useState } from "react";
+import '../styles.css'
+
 
 const TransferForm = ({ accounts, onTransfer, onClose }) => {
   const [from, setFrom] = useState("");
@@ -13,11 +15,11 @@ const TransferForm = ({ accounts, onTransfer, onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded-lg shadow-sm border space-y-4">
-      <h2 className="form-title">Transfer cash</h2>
+    <form onSubmit={handleSubmit}>
+      <h2 >Transfer cash</h2>
       <div>
-        <label className="block text-sm font-medium">From Account</label>
-        <select value={from} onChange={(e) => setFrom(e.target.value)} className="w-full p-2 border rounded">
+        <label >From Account</label>
+        <select value={from} onChange={(e) => setFrom(e.target.value)}>
           <option value="">Select account</option>
           {accounts.map((acc) => (
             <option key={acc.name} value={acc.name}>{acc.name} ({acc.currency})</option>
@@ -26,8 +28,8 @@ const TransferForm = ({ accounts, onTransfer, onClose }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">To Account</label>
-        <select value={to} onChange={(e) => setTo(e.target.value)} className="w-full p-2 border rounded">
+        <label>To Account</label>
+        <select value={to} onChange={(e) => setTo(e.target.value)} >
           <option value="">Select account</option>
           {accounts.map((acc) => (
             <option key={acc.name} value={acc.name}>{acc.name} ({acc.currency})</option>
@@ -36,10 +38,9 @@ const TransferForm = ({ accounts, onTransfer, onClose }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Amount</label>
+        <label >Amount</label>
         <input
           type="number"
-          className="w-full p-2 border rounded"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
@@ -47,16 +48,15 @@ const TransferForm = ({ accounts, onTransfer, onClose }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Note (optional)</label>
+        <label>Note (optional)</label>
         <input
           type="text"
-          className="w-full p-2 border rounded"
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
       </div>
 
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+      <button type="submit">
         Send
       </button>
       <button onClick={onClose} className="cancel-btn">Cancel</button>

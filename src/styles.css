@@ -61,14 +61,17 @@
     text-align: center;
     justify-content: center;
 }
-
 @media (min-width: 768px) {
   .balances {
     display: flex;
-    flex-wrap: wrap;
+  }
+  .container{
+    flex-wrap: nowrap;
   }
 }
 
-@media (min-width: 1024px) {
-
+@media (min-width: 1200px) {
+  .container{
+    flex-wrap: nowrap;
+  }
 }
