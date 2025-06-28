@@ -1,0 +1,74 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem auto;
+    border:#00bfff25 1px solid;
+    border-radius: 15px;
+}
+.balanceCard{
+    min-width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border:#00bfff25 1px solid;
+    border-radius: 15px;
+}
+.account{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+.accountName{
+  text-align: center;
+    display: flex;
+  justify-content: center;
+}
+.totalBalance{
+    border: none;
+}
+.image{
+    border-radius: 50%;
+}
+.name{
+    font-size: larger;
+    font-weight: bold;
+}
+.currency{
+    font-size: larger;
+}
+.action-button{
+    display: flex;
+    text-align: center;
+    gap: .5rem;
+    padding: .8rem 2rem;
+    margin: 2rem 0;
+    background-color: #00bfff;
+    border-radius: 15px;
+    font-size: large;
+}
+.btn{
+    background-color: #0b1623;
+    border: none;
+    font-size: large;
+    color: white;
+}
+.btn:hover{
+    color: red;
+    cursor: pointer;
+}
+.footer{
+    text-align: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .balances {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 1024px) {
+
+}

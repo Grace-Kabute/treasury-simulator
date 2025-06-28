@@ -12,7 +12,7 @@ const BalanceCard = ({ name, icon, currency, balance, isCurrent = false }) => {
   const iconToUse = icon || fallbackIcons[currency];
 
   return (
-    <div className="container">
+    <div className="balanceCard name">
  
       
       <div>
@@ -22,7 +22,7 @@ const BalanceCard = ({ name, icon, currency, balance, isCurrent = false }) => {
             alt={currency}
             width={40}
             height={40}
-            className="rounded-full object-cover"
+            className="image"
           />
         </div>
 
@@ -38,7 +38,7 @@ const BalanceCard = ({ name, icon, currency, balance, isCurrent = false }) => {
         </div>
       )}
 
-      <div>
+      <div className='currency'>
         {currency} {balance.toLocaleString()}
       </div>
     </div>

@@ -4,6 +4,7 @@ import App from "./App";
 import Accounts from "./layouts/Accounts";
 import Reports from "./Routes/Reports";
 
+
 export const router = createBrowserRouter([
   {
     path: "/",

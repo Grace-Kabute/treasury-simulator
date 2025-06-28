@@ -1,4 +1,12 @@
-export function handleSend({ from, amount, note, accounts, setAccounts, setTransactions, setSuccessMessage  }) {
+export function handleSend({
+  from,
+  amount,
+  note,
+  accounts,
+  setAccounts,
+  setTransactions,
+  setSuccessMessage,
+}) {
   if (!from || amount <= 0) {
     alert("Please enter a valid amount and source account.");
     return;
@@ -8,7 +16,7 @@ export function handleSend({ from, amount, note, accounts, setAccounts, setTrans
     console.error("Accounts list is missing or invalid.");
     return;
   }
-  
+
   const sourceIndex = accounts.findIndex((acc) => acc.name === from);
   if (sourceIndex === -1) {
     alert("Source account not found.");
@@ -37,8 +45,8 @@ export function handleSend({ from, amount, note, accounts, setAccounts, setTrans
 
   if (typeof setTransactions === "function") {
     setTransactions((prev) => [
-      ...prev,
       {
+        id: Date.now(),
         type: "send",
         from,
         to: "External Payout",
@@ -47,12 +55,13 @@ export function handleSend({ from, amount, note, accounts, setAccounts, setTrans
         currency: sourceAccount.currency,
         date: new Date().toISOString(),
       },
+      ...prev,
     ]);
   } else {
     console.warn("setTransactions is not provided, skipping transaction log.");
   }
 
-  if (setSuccessMessage) {
+  if (typeof setSuccessMessage === "function") {
     setSuccessMessage("Payout sent successfully");
   }
 }

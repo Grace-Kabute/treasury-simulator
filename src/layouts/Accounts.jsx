@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import BalanceCard from "../components/BalanceCard";
+import AccountsCard from "../components/AccountsCard";
 import TransferForm from "../components/TransferForm";
 import ActionButton from "../components/ActionButton";
-import { PlusCircle } from "lucide-react";
+import { AlignCenter, PlusCircle } from "lucide-react";
 import { handleTransfer } from "../utils/TransferLogic";
 import startingAccounts from "../utils/data";
+import '../styles.css'
+
 
 const Accounts = () => {
   const [accounts, setAccounts] = useState(startingAccounts);
@@ -20,16 +22,17 @@ const Accounts = () => {
   }, [successMessage]);
 
   return (
-    <div className="container accounts space-y-6">
+    <div className="accounts space-y-6">
       {successMessage && (
         <div>
           {successMessage}
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="accountName">All Accounts</h2>
+      <div className="box">
         {accounts.map((account, i) => (
-          <BalanceCard
+          <AccountsCard
             key={i}
             name={account.name}
             currency={account.currency}
@@ -38,13 +41,14 @@ const Accounts = () => {
         ))}
       </div>
 
-      <div>
+      <div className="accountName">
         {!showTransferForm && (
           <ActionButton
             label="Transfer Funds"
             icon={PlusCircle}
             color="green"
             onClick={() => setShowTransferForm(true)}
+            style={{AlignCenter}}
           />
         )}
       </div>
@@ -55,8 +59,13 @@ const Accounts = () => {
           setAccounts={setAccounts}
           setTransactions={setTransactions}
           onTransfer={(data) => {
-            handleTransfer({ ...data, accounts, setAccounts, setTransactions });
-            setSuccessMessage("Transfer successful!");
+            handleTransfer({
+              ...data,
+              accounts,
+              setAccounts,
+              setTransactions,
+              setSuccessMessage,
+            });
           }}
           onClose={() => setShowTransferForm(false)}
         />
