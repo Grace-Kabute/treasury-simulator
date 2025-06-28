@@ -10,11 +10,12 @@ import SendForm from "../components/SendForm";
 import startingAccounts from "../utils/data";
 import { handleTransfer } from "../utils/TransferLogic";
 import { handleSend } from "../utils/SendLogic";
+import { useTransactions } from "../hooks/UseTransactions";
 
 const Dashboard = () => {
   const [visibleForm, setVisibleForm] = useState(null);
   const [accounts, setAccounts] = useState(startingAccounts);
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useTransactions();
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
@@ -24,32 +25,29 @@ const Dashboard = () => {
     }
   }, [successMessage]);
 
+  const getTotalBalance = (currency) =>
+    accounts
+      .filter((acc) => acc.currency === currency)
+      .reduce((sum, acc) => sum + acc.balance, 0);
+
+
+
   return (
-    <div className="dashboard-container">
-      {/* Alert */}
+    <div className="dashboard">
       {successMessage && (
         <div className="bg-green-100 text-green-800 border border-green-300 p-3 rounded mb-4">
           {successMessage}
         </div>
       )}
 
-      {/* Total balance summary */}
-      <BalanceCard
-        name="Total Treasury Balance"
-        icon={usd}
-        currency="USD"
-        balance={3421000}
-        isCurrent
-      />
-
-      {/* Currency breakdown cards */}
+      {/* Currency Balances */}
       <div className="balances">
-        <BalanceCard icon={usd} currency="USD" balance={100000} isCurrent />
-        <BalanceCard icon={kes} currency="KES" balance={4000000} isCurrent />
-        <BalanceCard icon={ngn} currency="NGN" balance={2500000} isCurrent />
+        <BalanceCard icon={usd} currency="USD" balance={getTotalBalance("USD")} isCurrent />
+        <BalanceCard icon={kes} currency="KES" balance={getTotalBalance("KES")} isCurrent />
+        <BalanceCard icon={ngn} currency="NGN" balance={getTotalBalance("NGN")} isCurrent />
       </div>
 
-      {/* Send / Transfer buttons */}
+      {/* Action Buttons */}
       <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
         <ActionButton
           label="Send"
@@ -65,6 +63,7 @@ const Dashboard = () => {
         />
       </div>
 
+      {/* Forms */}
       <div style={{ marginTop: "20px" }}>
         {visibleForm === "send" && (
           <SendForm

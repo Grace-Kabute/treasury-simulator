@@ -1,15 +1,22 @@
 export const fxRates = {
   "USD->KES": 129.25,
   "KES->USD": 1 / 129.25,
-
   "USD->NGN": 1551,
   "NGN->USD": 1 / 1551,
-
   "KES->NGN": 11.95,
   "NGN->KES": 1 / 11.95,
 };
 
-export function handleTransfer({ from, to, amount, note, accounts, setAccounts, setTransactions, setSuccessMessage }) {
+export function handleTransfer({
+  from,
+  to,
+  amount,
+  note,
+  accounts,
+  setAccounts,
+  setTransactions,
+  setSuccessMessage,
+}) {
   if (!from || !to || !accounts || typeof amount !== "number") {
     console.error("Missing or invalid transfer parameters.");
     return;
@@ -17,11 +24,6 @@ export function handleTransfer({ from, to, amount, note, accounts, setAccounts, 
 
   if (from === to) {
     alert("Cannot transfer to the same account.");
-    return;
-  }
-
-  if (!Array.isArray(accounts)) {
-    console.error("Accounts must be an array.");
     return;
   }
 
@@ -55,11 +57,6 @@ export function handleTransfer({ from, to, amount, note, accounts, setAccounts, 
     convertedAmount = amount * rate;
   }
 
-  if (typeof setAccounts !== "function") {
-    console.error("setAccounts is not a function.");
-    return;
-  }
-
   const updatedAccounts = accounts.map((acc) => {
     if (acc.name === from) return { ...acc, balance: acc.balance - amount };
     if (acc.name === to) return { ...acc, balance: acc.balance + convertedAmount };
@@ -70,6 +67,8 @@ export function handleTransfer({ from, to, amount, note, accounts, setAccounts, 
 
   if (typeof setTransactions === "function") {
     const transaction = {
+      id: Date.now(),
+      type: "transfer",
       from,
       to,
       amount,
@@ -81,11 +80,9 @@ export function handleTransfer({ from, to, amount, note, accounts, setAccounts, 
     };
 
     setTransactions((prev) => [transaction, ...prev]);
-  } else {
-    console.warn("setTransactions not provided, skipping transaction log.");
   }
 
-  if (setSuccessMessage) {
+  if (typeof setSuccessMessage === "function") {
     setSuccessMessage("Transfer complete");
   }
 }
