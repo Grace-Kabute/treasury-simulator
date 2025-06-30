@@ -29,9 +29,12 @@ This interface allows users to:
 
 - All data is simulated in the frontend (no backend or database)
 - Static FX Rates used:
-  - 1 USD = 160 KES
-  - 1 USD = 1400 NGN
-  - 1 NGN = 0.12 KES
+  "USD->KES": 129.25,
+  "KES->USD": 1 / 129.25,
+  "USD->NGN": 1551,
+  "NGN->USD": 1 / 1551,
+  "KES->NGN": 11.95,
+  "NGN->KES": 1 / 11.95,
 - All transfers happen instantly, except future-dated transfers, which are only visual
 - No external APIs or real payment integrations used
 
